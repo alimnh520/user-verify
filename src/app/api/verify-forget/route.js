@@ -36,7 +36,7 @@ export const POST = async (request) => {
                 response.cookies.set('set-pass', true, {
                     httpOnly: true,
                     secure: process.env.NODE_ENV === "production",
-                    sameSite: "Strict",
+                    sameSite: "strict",
                     path: "/"
                 });
                 return response

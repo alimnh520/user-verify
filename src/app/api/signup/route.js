@@ -43,7 +43,7 @@ export const POST = async(request) => {
         response.cookies.set('verify', verify, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "strict",
             path: "/"
         });
 
@@ -54,7 +54,7 @@ export const POST = async(request) => {
         response.cookies.set('verify-otp', verifyOtp, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "strict",
             maxAge: 1 * 60 * 1000,
             path: "/"
         });

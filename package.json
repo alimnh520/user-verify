@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.1",
+    "cookie": "^1.0.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",

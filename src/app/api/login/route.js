@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
 
-export const POST = async (request) => {
+export const POST = async (request, response) => {
     try {
         const { email, password } = await request.json();
         const collection = (await mongoClient()).collection('newusers');
@@ -34,7 +34,7 @@ export const POST = async (request) => {
             response.cookies.set('verify', verify, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "Strict",
+                sameSite: "strict",
                 path: "/"
             });
             return response
@@ -42,11 +42,12 @@ export const POST = async (request) => {
 
         const response = NextResponse.json({ message: 'Login successful', success: true, role: data.role });
 
+
         if (data.role === "admin") {
             response.cookies.set('is_admin', true, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "Strict",
+                sameSite: "strict",
                 maxAge: 30 * 24 * 60 * 60,
                 path: "/"
             });
@@ -55,7 +56,7 @@ export const POST = async (request) => {
         response.cookies.set('user-verified', true, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "Strict",
+            sameSite: "strict",
             maxAge: 30 * 24 * 60 * 60,
             path: "/"
         });
